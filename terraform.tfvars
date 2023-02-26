@@ -21,7 +21,7 @@ OS_image     = "debian-cloud/debian-11"
 ##GKE Module##
 cluster_region          = "us-central1"
 cluster_zones_list      = ["us-central1-a", "us-central1-b"]
-nodes_machine_type      = "e2-standard-2" #"e2-standard-2"
+nodes_machine_type      = "e2-standard-2"
 number_of_node_per_zone = 1
 cluster_name            = "neuron-cluster"
 

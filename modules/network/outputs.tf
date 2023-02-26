@@ -3,7 +3,7 @@ output "network" {
   description = "The VPC"
 }
 
-##management subnt
+
 output "subnet" {
   value       = google_compute_subnetwork.subnet
   description = "The Public subnet"

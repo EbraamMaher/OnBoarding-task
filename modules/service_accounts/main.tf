@@ -10,7 +10,7 @@ resource "google_service_account" "vm-service-account" {
 
 resource "google_project_iam_binding" "bq-viewer" {
   project      = var.project_id
-  role         = "roles/bigquery.dataViewer" #"roles/storage.admin" 
+  role         = "roles/bigquery.dataViewer" 
 
   members = [
     "serviceAccount:${google_service_account.vm-service-account.email}",
@@ -20,7 +20,7 @@ resource "google_project_iam_binding" "bq-viewer" {
 
 resource "google_project_iam_binding" "container-admin" {
   project      = var.project_id
-  role         = "roles/container.admin" #"roles/storage.admin" 
+  role         = "roles/container.admin" 
 
   members = [
     "serviceAccount:${google_service_account.vm-service-account.email}",
@@ -44,5 +44,3 @@ resource "google_project_iam_binding" "gcr-read-only" {
     "serviceAccount:${google_service_account.cluster-service-account.email}",
   ]
 }
-
-###"roles/storage.objectViewer" and "roles/artifactregistry.reader" both enable the vm to pull images

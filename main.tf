@@ -26,10 +26,10 @@ module "bastion" {
   subnet_name  = module.google_networks.subnet.name
 
   zone         = var.main_zone
-  bastion_name = var.machine_name 
+  bastion_name = var.machine_name
   machine_type = var.machine_type
   OS_image     = var.OS_image
-  vm-sa-email     = module.service_accounts.vm-sa-email
+  vm-sa-email  = module.service_accounts.vm-sa-email
 }
 
 
@@ -39,7 +39,7 @@ module "google_kubernetes_cluster" {
   project_id = var.project_id
 
   network_name = module.google_networks.network.name
-  subnet_name  = module.google_networks.subnet.name ##put the cluster in the restricted subnet
+  subnet_name  = module.google_networks.subnet.name
 
   cluster_region          = var.cluster_region
   cluster_zones_list      = var.cluster_zones_list
@@ -51,10 +51,10 @@ module "google_kubernetes_cluster" {
   pods_ipv4_cidr_block           = var.pods_ipv4_cidr_block
   cluster_services_ip_cidr_range = var.cluster_services_ip_cidr_range
 
-  authorized_ipv4_cidr_block = "${module.bastion.ip}/32" #bastion IP to be putted in authorized networks
+  authorized_ipv4_cidr_block = "${module.bastion.ip}/32"
   master_location            = var.master_location
 
-  gke_service_account            = module.service_accounts.cluster-sa-email
+  gke_service_account = module.service_accounts.cluster-sa-email
 }
 
 module "buckets" {

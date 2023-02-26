@@ -1,21 +1,19 @@
+/*=============Master=============*/
+
 resource "google_container_cluster" "app_cluster" {
-#https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster  
-  name       = var.cluster_name #"app-cluster"
-  location   = var.master_location #"europe-west3-c" #var.cluster_region
+  name       = var.cluster_name 
+  location   = var.master_location 
   network    = var.network_name
   subnetwork = var.subnet_name
   cluster_autoscaling {
     enabled = false
   }
-  # We can't create a cluster with no node pool defined, but we want to only use
-  # separately managed node pools. So we create the smallest possible default
-  # node pool and immediately delete it.
   remove_default_node_pool = true
   initial_node_count       = 1
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block  = var.pods_ipv4_cidr_block
-    services_ipv4_cidr_block = var.cluster_services_ip_cidr_range #var.services_ipv4_cidr_block
+    services_ipv4_cidr_block = var.cluster_services_ip_cidr_range 
   }
   
   dynamic "master_authorized_networks_config" {
@@ -37,14 +35,13 @@ resource "google_container_cluster" "app_cluster" {
     private_cluster_config {
     enable_private_endpoint = true
     enable_private_nodes    = true
-    master_ipv4_cidr_block  = var.master_node_cidr #var.master_ipv4_cidr_block
+    master_ipv4_cidr_block  = var.master_node_cidr 
   }
 }
 
-####################################
+/*============= Nodes=============*/
 
 resource "google_container_node_pool" "app_cluster_linux_node_pool" {
-#https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool
 
   name           = "${google_container_cluster.app_cluster.name}--linux-node-pool"
   location       = google_container_cluster.app_cluster.location
@@ -56,9 +53,9 @@ resource "google_container_node_pool" "app_cluster_linux_node_pool" {
   node_config {
     disk_type = "pd-standard"
     disk_size_gb = 100 ##var.node_disk_size
-    machine_type = var.nodes_machine_type #"e2-standard-2"   
-    image_type = "COS_CONTAINERD"
-    service_account =  var.gke_service_account #google_service_account.cluster-sa.email
+    machine_type = var.nodes_machine_type   
+    image_type = "COS_CONTAINERD"    ##var.node_image_type
+    service_account =  var.gke_service_account 
     
      oauth_scopes = [
 

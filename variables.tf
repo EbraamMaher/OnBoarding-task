@@ -13,10 +13,10 @@ variable "region" {
 variable "backend_bucket" {
   type        = string
   description = "region to be used"
-  #default     = var.project_id
+
 }
 
-variable "main_zone" { ##to be checked 
+variable "main_zone" { 
   type        = string
   description = "zone to be used"
 }
