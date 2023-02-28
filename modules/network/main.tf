@@ -24,6 +24,9 @@ resource "google_compute_firewall" "ssh" {
   project       = var.project_id
   source_ranges = ["35.235.240.0/20"]    ##var.ssh_source_ranges
   target_tags = ["vm"]
+  depends_on = [
+    google_compute_network.vpc
+  ]
   allow {
     protocol = "tcp"  
     ports    = ["22"]  

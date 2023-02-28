@@ -22,10 +22,16 @@ resource "google_container_cluster" "app_cluster" {
     content {
       cidr_blocks {
         cidr_block   = master_authorized_networks_config.value
-        display_name = "External Control Plane access"
+        display_name = "bastion access to cluster"
       }
-    }
+   }
   }
+  # master_authorized_networks_config {
+  #       cidr_blocks {
+  #           cidr_block   = authorized_ipv4_cidr_block
+  #           display_name = "bastion access to cluster"
+  #       }
+  # }
 
   master_auth {
     client_certificate_config {
