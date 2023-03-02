@@ -32,7 +32,7 @@ resource "google_compute_instance" "bastion" {
   service_account {
     
     email  =  var.vm-sa-email 
-    scopes = ["cloud-platform"] 
+    scopes = ["cloud-platform"]  
   }
   metadata_startup_script = data.template_file.startup_script.rendered
 

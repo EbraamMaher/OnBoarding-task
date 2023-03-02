@@ -25,9 +25,25 @@ variable "cluster_zones_list" {
   description = "The zones where Kubernetes cluster worker nodes should be located"
 }
 
+
+
 variable "nodes_machine_type" {
   type        = string
 }
+
+variable "nodes_disk_type"{
+  type        = string
+}
+
+variable "nodes_disk_size"{
+  type        = string
+}
+
+variable "nodes_image_type"{
+  type        = string
+}
+
+
 
 variable "number_of_node_per_zone" {
   type        = number

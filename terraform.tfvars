@@ -9,7 +9,7 @@ main_zone      = "us-central1-a"
 network_name = "neuron"
 subnet_name  = "neuron-subnet"
 subnet-cider = "10.3.0.0/16"
-
+ssh_source_ranges = ["35.235.240.0/20"] 
 
 ##bastion Module##
 machine_name = "bastion-0"
@@ -21,7 +21,12 @@ OS_image     = "debian-cloud/debian-11"
 ##GKE Module##
 cluster_region          = "us-central1"
 cluster_zones_list      = ["us-central1-a", "us-central1-b"]
+
 nodes_machine_type      = "e2-standard-2"
+nodes_disk_type   =        "pd-standard"                    
+nodes_disk_size =    100  
+nodes_image_type = "COS_CONTAINERD" 
+
 number_of_node_per_zone = 1
 cluster_name            = "neuron-cluster"
 

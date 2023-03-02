@@ -8,6 +8,7 @@ module "google_networks" {
   network_name = var.network_name
   subnet_name  = var.subnet_name
   subnet-cider = var.subnet-cider
+  ssh_source_ranges = var.ssh_source_ranges
 }
 
 module "service_accounts" {
@@ -44,6 +45,9 @@ module "google_kubernetes_cluster" {
   cluster_region          = var.cluster_region
   cluster_zones_list      = var.cluster_zones_list
   nodes_machine_type      = var.nodes_machine_type
+  nodes_disk_type   = var.nodes_disk_type                         
+  nodes_disk_size = var.nodes_disk_size                       
+  nodes_image_type = var.nodes_image_type             
   number_of_node_per_zone = var.number_of_node_per_zone
   cluster_name            = var.cluster_name
   master_node_cidr        = var.master_node_cidr

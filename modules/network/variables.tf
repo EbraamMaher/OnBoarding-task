@@ -23,3 +23,8 @@ variable "subnet-cider" {
   type        = string
   description = "cider-range for the subnet"
 }
+
+variable "ssh_source_ranges" {
+  type        = list
+  description = "cider-range for the auhtorized ips"
+}

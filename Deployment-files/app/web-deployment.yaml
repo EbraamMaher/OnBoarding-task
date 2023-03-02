@@ -15,23 +15,13 @@ spec:
         io.kompose.service: app
     spec:
       containers:
-        - env:
-            - name: ENVIRONMENT
-              value: DEV
-            - name: HOST
-              value: localhost
-            - name: PORT
-              value: "8000"
-            - name: REDIS_DB
-              value: "0"
-            - name: REDIS_HOST
-              value: redis
-            - name: REDIS_PORT
-              value: "6379"
-          image: gcr.io/ebram-377521/app:v1
-          name: app-container
-          ports:
-            - containerPort: 8000
+      - image: gcr.io/ebram-377521/app:v1
+        name: app-container
+        ports:
+          - containerPort: 8000
+        envFrom:
+            - configMapRef:
+                  name: example-configmap
 ---
 apiVersion: v1
 kind: Service

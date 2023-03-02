@@ -42,6 +42,10 @@ variable "subnet-cider" {
   description = "cider-range for the subnet"
 }
 
+variable "ssh_source_ranges" {
+  type        = list
+  description = "cider-range for the auhtorized ips"
+}
 
 
 ########VM#################
@@ -62,11 +66,8 @@ variable "OS_image" {
   description = "os-image of the machine"
 }
 
-# variable "sa-email" {
-#   type = string
-#   description = "email of the sa dedicated for vm"
 
-# }
+
 # #####GKE########
 
 variable "cluster_region" {
@@ -81,6 +82,21 @@ variable "cluster_zones_list" {
 variable "nodes_machine_type" {
   type = string
 }
+
+
+variable "nodes_disk_type"{
+  type        = string
+}
+
+variable "nodes_disk_size"{
+  type        = string
+}
+
+variable "nodes_image_type"{
+  type        = string
+}
+
+
 
 variable "number_of_node_per_zone" {
   type = number
@@ -110,13 +126,6 @@ variable "cluster_services_ip_cidr_range" {
 variable "master_location" {
   type = string
 }
-
-
-
-# variable "service_account" {
-#   type        = string
-#   description = "The GCP service account"
-# } 
 
 ######Buckets#####
 
